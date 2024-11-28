@@ -4,27 +4,21 @@ const app = express();
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+require("dotenv").config();
 
 let port = process.env.PORT || 3100;
-mongoose.connect('mongodb://hrku_123:hrku_123@merncluster-shard-00-00.u08je.mongodb.net:27017,merncluster-shard-00-01.u08je.mongodb.net:27017,merncluster-shard-00-02.u08je.mongodb.net:27017/Bakery_Backend?ssl=true&replicaSet=atlas-4476ih-shard-0&authSource=admin&retryWrites=true&w=majority',
- {useNewUrlParser: true,
+mongoose
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
     useUnifiedTopology: true,
-    useCreateIndex:true
-}).then(()=> {
-    console.log("DataBase CONNECTED")
-})
-// mongoose
-  // .connect(
-  //   "mongodb+srv://hrku_123:hrku_123@merncluster.u08je.mongodb.net/Bakery_Backend?retryWrites=true&w=majority",
-  //   {
-  //     useNewUrlParser: true,
-  //     useUnifiedTopology: true,
-  //     useCreateIndex: true,
-  //   }
-  // )
-  // .then(() => {
-  //   console.log("MongoDB Atlas CONNECTED . . . . . . . . . . .");
-  // });
+    useCreateIndex: true,
+  })
+  .then(() => {
+    console.log("Database CONNECTED");
+  })
+  .catch((err) => {
+    console.error("Database connection error:", err);
+  });
 
 //Middlewares
 app.use(bodyParser.json());
