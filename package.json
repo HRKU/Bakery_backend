@@ -1,6 +1,6 @@
 {
   "name": "bakery_backend",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "This is the Back_end for my bakery Website",
   "main": "index.js",
   "scripts": {
